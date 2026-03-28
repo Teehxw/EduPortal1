@@ -67,12 +67,12 @@ No external dependencies required.
 ### Running the Program
 
 ```bash
-python main.py <sql_file>
+python main.py <database_file>
 ```
 
 **Example:**
 ```bash
-python main.py sample_data.sql
+python main.py sample_db.sql
 ```
 
 The database file will be read if it already exists. If you want to reset and recreate all tables from scratch, call `setup_db()` directly (note: this drops all existing data).
