@@ -14,7 +14,7 @@ def setup_db():
     global conn, cur
 
     #Connect to the database 
-    conn = sqlite3.connect("portal_db")
+    conn = sqlite3.connect("project291.db")
     cur = conn.cursor()
 
     #Drop tables if they exist
@@ -190,23 +190,14 @@ def login_menu(conn):
 
 # SET UP MAIN FOR TESTING THE PROGRAM
 def main():
+
+    # LOAD AND EXECUTE THE PROVIDED SQL FILE
     if len(sys.argv) < 2:  
-        print("Usage: python main.py <sql_file>")
-        exit(1)    
-
-    sql_file = sys.argv[1]
-
-    # Connect to the database
-    conn = sqlite3.connect("portal_db")
-
-    setup_db()
-
-    # Load and execute the SQL file
-    with open(sql_file, 'r') as file:
-        sql = file.read()
-    
-    conn.executescript(sql)
-    conn.commit()
+        exit(1)    # checks if anything was passed after 'main.py'. If there is only 1 item, means it is only main.py and nothing else
+ 
+    db_name = sys.argv[1]
+    # Connect once
+    conn = sqlite3.connect(db_name)
     print("Data loaded successfully!")
     
     # Start login loop
@@ -214,6 +205,7 @@ def main():
 
     # Close connection when program exits
     conn.close()
+
 
 if __name__ == "__main__":
     main()
